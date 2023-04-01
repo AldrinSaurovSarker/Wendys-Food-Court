@@ -167,12 +167,12 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="amount_min">Minimum Unit Price:</label>
+                    <label for="amount_min">Minimum amount entry:</label>
                     <input type="number" class="form-control" id="amount_min" name="amount_min">
                 </div>
 
                 <div class="form-group">
-                    <label for="amount_max">Maximum Unit Price:</label>
+                    <label for="amount_max">Maximum amount entry:</label>
                     <input type="number" class="form-control" id="amount_max" name="amount_max">
                 </div>
 

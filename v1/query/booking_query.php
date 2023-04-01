@@ -1,7 +1,7 @@
 <?php
     $page = 'search';
     include '../layouts/header.php';
-    // include '../layouts/navbar.php';
+    include '../layouts/navbar.php';
 ?>
 
 <?php
@@ -55,7 +55,7 @@
                 while ($table = $tables->fetch_assoc()) {
                     $table_numbers .= $table['table_number'] . ", ";
                 }
-                $table_numbers = rtrim($table_numbers, ", "); // remove last comma and space
+                $table_numbers = rtrim($table_numbers, ", ");
             }
             echo '<td>'.$table_numbers.'<td></tr>';
         }        
