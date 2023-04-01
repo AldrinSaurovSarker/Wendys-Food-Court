@@ -69,8 +69,30 @@
 
         <details>
             <summary>Search for bookings</summary>
-            <form>
+            <form action="booking_query.php" method="GET" class="py-5">
+                <div class="form-group">
+                    <label for="booking_id">Booking ID:</label>
+                    <input type="text" class="form-control" id="booking_id" name="booking_id">
+                </div>
 
+                <div class="form-group">
+                    <label for="datetime">Date:</label>
+                    <input type="date" class="form-control" id="time_stamp_book" name="time_stamp_book">
+                </div>
+
+                <div class="form-group">
+                    <label for="booked_by">Booked By:</label>
+                    <select class="form-control" id="booked_by" name="booked_by">
+                        <option value="">No customer selected</option>
+                        <?php 
+                            while($row = mysqli_fetch_assoc($customerList)) {
+                                echo "<option value='" . $row["first_name"] . " " . $row["last_name"] . "'>" . $row["first_name"] . " " . $row["last_name"] . "</option>";
+                            }
+                        ?>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Search</button>
             </form>
         </details>
 

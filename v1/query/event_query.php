@@ -1,7 +1,7 @@
 <?php
     $page = 'search';
     include '../layouts/header.php';
-    // include '../layouts/navbar.php';
+    include '../layouts/navbar.php';
 ?>
 
 <?php
@@ -14,7 +14,7 @@
         $hosted_by = $_GET["hosted_by"];
 
         // Construct the SQL query to search for events
-        $sql = "SELECT * FROM events WHERE 1=1";
+        $sql = "SELECT * FROM events LEFT JOIN customer ON events.hosted_by = customer.customer_id WHERE 1=1";
 
         if (!empty($event_name)) {
             if ($event_name == "Other") {
@@ -36,17 +36,16 @@
             $sql .= " AND CONCAT_WS(' ', first_name, last_name) = '$hosted_by'";
         }
         
-        // Execute the query and retrieve the results
         $result = mysqli_query($conn, $sql);
 
-        // Display the search results in a table
-        echo "<table>";
-        echo "<tr><th>Event Name</th><th>Duration</th><th>Date</th><th>Hosted By</th></tr>";
+        echo '<div class="container py-5 my-5"><table class="table">';
+        echo "<thead><tr><th>Event Name</th><th>Duration</th><th>Date</th><th>Hosted By</th></tr></thead>";
+        echo "<tbody>";
 
-        while ($row = mysqli_fetch_assoc($result)) {
-            echo "<tr><td>" . $row["event_name"] . "</td><td>" . $row["event_duration"] . " hours</td><td>" . $row["time_stamp"] . "</td><td>" . $row["hosted_by"] . "</td></tr>";
+        foreach ($result as $row) {
+            echo "<tr><td>" . $row["event_name"] . "</td><td>" . $row["event_duration"] . " hours</td><td>" . $row["time_stamp"] . "</td><td>" .$row["first_name"] . " ".$row["last_name"]. "</td></tr>";
         }
 
-        echo "</table>";
+        echo "</tbody></table></div>";
     }
 ?>
